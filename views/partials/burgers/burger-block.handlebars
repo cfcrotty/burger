@@ -1,0 +1,15 @@
+<div class="row">
+	<div class="col-md=12 makeCenter text-center">
+	<b>{{burger_name}}</b><br>
+	{{description}}<br>
+	{{#if devoured}}
+	<button class="delete btn btn-danger" data-id="{{id}}">
+		DELETE
+	</button>
+	{{else}}
+	<button class="change-devour btn btn-secondary" data-id="{{id}}" data-devour="{{dev}}">
+		Devour
+	</button>
+	{{/if}}
+	</div>
+</div>
