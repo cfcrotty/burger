@@ -4,7 +4,3 @@ INSERT INTO burgers (burger_name,description) VALUES ('Double Cheese Burger','Do
 INSERT INTO burgers (burger_name,description) VALUES ('Truffle Burger','Truffle Burger');
 INSERT INTO burgers (burger_name,description) VALUES ('Chicken Burger','Chicken Burger');
 INSERT INTO burgers (burger_name,description) VALUES ('Veggie Burger','Veggie Burger');
-
-USE burgers_db;
-SELECT * FROM burgers;
-
