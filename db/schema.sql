@@ -6,9 +6,11 @@ USE burgers_db;
 CREATE TABLE burgers
 (
 	id int NOT NULL AUTO_INCREMENT,
-	burger_name varchar(255) NOT NULL,
-	description varchar(255) NOT NULL,
+	burger_name VARCHAR(255) NOT NULL,
+	description VARCHAR(255) NOT NULL,
 	devoured BOOLEAN DEFAULT false,
+	favorite BOOLEAN DEFAULT false,
+	rating INT(3) DEFAULT 0,
 	PRIMARY KEY (id)
 );
 

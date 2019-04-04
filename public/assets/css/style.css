@@ -21,13 +21,20 @@ li {
 body {
   font-family: 'Playfair Display', serif;
   font-size: 20px;
-  background: url('../images/doodles.png') no-repeat center center fixed;
+  background: url('../images/doodles.png') repeat center center fixed;
 }
 p {
   font-size: 15px;
 }
 h4 {
   margin-top: 20px;
+}
+textarea {
+  resize: none;
+  border: none;
+}
+input {
+  border: none;
 }
 .h4 {
   margin-top: 10px;
@@ -137,6 +144,9 @@ h4 {
 }
 .makeCenter {
   margin: auto;
+}
+.primary {
+  width: 100%;
 }
 /* Change Bootstrap CSS*/
 /* .container {

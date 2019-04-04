@@ -21,6 +21,23 @@ $(function() {
     );
   });
 
+  $(".favorite").on("click", function(event) {
+    var id = $(this).data("id");
+    var fav = $(this).data("favorite");
+
+    // Send the PUT request.
+    $.ajax("/api/burgers/fav/" + id, {
+      type: "PUT",
+      data: {favorite: fav}
+    }).then(
+      function() {
+        console.log("changed favorite to", true);
+        // Reload the page to get the updated list
+        location.reload();
+      }
+    );
+  });
+
   $(".create-form").on("submit", function(event) {
     // Make sure to preventDefault on a submit event.
     event.preventDefault();

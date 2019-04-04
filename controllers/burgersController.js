@@ -42,6 +42,33 @@ router.put("/api/burgers/:id", (req, res) => {
 
     }
   );
+
+});
+
+router.put("/api/burgers/fav/:id", (req, res) => {
+  const condition = "id = " + req.params.id;
+
+  console.log("condition", condition);
+  let fav = false;
+  if (req.body.favorite == 1) {
+    fav = true;
+  }
+
+  burger.update(
+    {
+      favorite: fav
+    },
+    condition,
+    result => {
+      if (result.changedRows === 0) {
+        // If no rows were changed, then the ID must not exist, so 404
+        return res.status(404).end();
+      }
+      res.status(200).end();
+
+    }
+  );
+
 });
 
 router.delete("/api/burgers/:id", (req, res) => {
