@@ -26,14 +26,16 @@
           </div>
         </div>
       </div>
-      
+
     </div>
-    <div class="row"><div class="col-md-12"></div></div>
+    <div class="row">
+      <div class="col-md-12"></div>
+    </div>
   </div>
 
-<div id="updateForm" class="col-md-3" style="display:none;">
+  <div id="updateForm" class="col-md-3" style="display:none;">
     <div class="row indexSection">
-  {{!-- Update Form --}}
+      {{!-- Update Form --}}
       <div class="col-md-12">
         <div class="row">
           <div class="col-md-12">
@@ -81,9 +83,15 @@
             <div class="row">
               <div class="col-md-12">
                 {{#each burgers}}
+
                 {{#unless devoured}}
-                {{> burgers/burger-block dev=true}}
+                <div class="card">
+                  <div class="card-header">
+                    {{> burgers/burger-block dev=true}}
+                  </div>
+                </div>
                 {{/unless}}
+
                 {{/each}}
               </div>
             </div>
@@ -100,7 +108,11 @@
                 <ul>
                   {{#each burgers}}
                   {{#if devoured}}
-                  {{> burgers/burger-block dev=false}}
+                  <div class="card">
+                    <div class="card-header">
+                      {{> burgers/burger-block dev=false}}
+                    </div>
+                  </div>
                   {{/if}}
                   {{/each}}
                 </ul>
@@ -110,7 +122,9 @@
         </div>
       </div>
     </div>
-    <div class="row"><div class="col-md-12"></div></div>
+    <div class="row">
+      <div class="col-md-12"></div>
+    </div>
   </div>
 
 </div>

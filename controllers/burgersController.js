@@ -5,6 +5,10 @@ const router = express.Router();
 // Import the model (cat.js) to use its database functions.
 const burger = require("../models/burger.js");
 
+function removeSpecials(str){
+  return str.replace(/[^\w\s]/gi, '');
+}
+
 // Create all our routes and set up logic within those routes where required.
 router.get("/", (req, res) => {
   burger.select(data => {
@@ -17,7 +21,7 @@ router.get("/", (req, res) => {
 });
 
 router.post("/api/burgers", (req, res) => {
-  burger.insert(["burger_name", "description"], [req.body.burger_name, req.body.description], result => {
+  burger.insert(["burger_name", "description"], [removeSpecials(req.body.burger_name), removeSpecials(req.body.description)], result => {
     // Send back the ID of the new quote
     res.json({ id: result.insertId });
   });
@@ -70,8 +74,8 @@ router.put("/api/burgers/update/:id", (req, res) => {
   const condition = "id = " + req.params.id;
     burger.update(
       {
-        burger_name: req.body.burger_name,
-        description: req.body.description
+        burger_name: removeSpecials(req.body.burger_name),
+        description: removeSpecials(req.body.description)
       },
       condition,
       result => {

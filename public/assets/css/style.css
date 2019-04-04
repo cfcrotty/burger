@@ -148,6 +148,13 @@ input {
 .primary {
   width: 100%;
 }
+.rainbow {
+  color: transparent;
+  background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+  background: -webkit-radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+  background-clip: text;
+  -webkit-background-clip: text;
+}
 /* Change Bootstrap CSS*/
 /* .container {
   position: relative;
@@ -159,9 +166,6 @@ input {
 }
 .jumbotron {
   padding: 3rem 1rem;
-}
-.card-header { 
-  padding: 0;
 }
 .h2 {
   font-size: 2rem;
