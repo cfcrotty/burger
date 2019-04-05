@@ -1,6 +1,6 @@
 // Make sure we wait to attach our handlers until the DOM is fully loaded.
-$(function() {
-  $(".change-devour").on("click", function(event) {
+$(function () {
+  $(".change-devour").on("click", function (event) {
     var id = $(this).data("id");
     // var newDevour = $(this).data("devour");
     // console.log(newDevour);
@@ -11,9 +11,9 @@ $(function() {
     // Send the PUT request.
     $.ajax("/api/burgers/" + id, {
       type: "PUT",
-      data: {devoured: true}
+      data: { devoured: true }
     }).then(
-      function() {
+      function () {
         console.log("changed devoured to", true);
         // Reload the page to get the updated list
         location.reload();
@@ -21,21 +21,21 @@ $(function() {
     );
   });
 
-  $(".favorite").on("click", function(event) {
+  $(".favorite").on("click", function (event) {
     var id = $(this).data("id");
     var fav = $(this).data("favorite");
 
     $.ajax("/api/burgers/fav/" + id, {
       type: "PUT",
-      data: {favorite: fav}
+      data: { favorite: fav }
     }).then(
-      function() {
+      function () {
         location.reload();
       }
     );
   });
 
-  $(".update-this").on("click", function(event) {
+  $(".update-this").on("click", function (event) {
     $("#addForm").hide();
     $("#updateForm").show();
 
@@ -48,52 +48,60 @@ $(function() {
     $("#description1").val(description);
   });
 
-  $(".update-form").on("submit", function(event) {
+  $(".update-form").on("submit", function (event) {
     event.preventDefault();
     var id = $("#id1").val().trim();
-    var newBurger = {
-      burger_name: $("#name1").val().trim(),
-      description: $("#description1").val().trim()
-    };
 
-    $.ajax("/api/burgers/update/" + id, {
-      type: "PUT",
-      data: newBurger
-    }).then(
-      function() {
-        console.log("changed favorite to", true);
-        location.reload();
-      }
-    );
+    if (!$("#name1").val().trim() || !$("#description1").val().trim()) {
+      $("#results-modal").modal();
+    } else {
+      var newBurger = {
+        burger_name: $("#name1").val().trim(),
+        description: $("#description1").val().trim()
+      };
+
+      $.ajax("/api/burgers/update/" + id, {
+        type: "PUT",
+        data: newBurger
+      }).then(
+        function () {
+          console.log("changed favorite to", true);
+          location.reload();
+        }
+      );
+    }
   });
 
-  $(".create-form").on("submit", function(event) {
+  $(".create-form").on("submit", function (event) {
     event.preventDefault();
+    if (!$("#name").val().trim() || !$("#description").val().trim()) {
+      $("#results-modal").modal();
+    } else {
+      var newBurger = {
+        burger_name: $("#name").val().trim(),
+        description: $("#description").val().trim()
+      };
 
-    var newBurger = {
-      burger_name: $("#name").val().trim(),
-      description: $("#description").val().trim()
-    };
-
-    $.ajax("/api/burgers", {
-      type: "POST",
-      data: newBurger
-    }).then(
-      function() {
-        console.log("created new burger");
-        // Reload the page to get the updated list
-        location.reload();
-      }
-    );
+      $.ajax("/api/burgers", {
+        type: "POST",
+        data: newBurger
+      }).then(
+        function () {
+          console.log("created new burger");
+          // Reload the page to get the updated list
+          location.reload();
+        }
+      );
+    }
   });
 
-  $(".delete").on("click", function(event) {
+  $(".delete").on("click", function (event) {
     let id = $(this).data("id");
     $.ajax({
       url: "/api/burgers/" + id,
       method: "DELETE"
-    }).then(function(data){
-      if(data) {
+    }).then(function (data) {
+      if (data) {
         location.reload();
       }
     });
