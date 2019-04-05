@@ -5,7 +5,7 @@ const path = require("path");
 const burger = require("../models/burger.js");
 
 function removeSpecials(str){
-  return str.replace(/[^\w\s]/gi, '');
+  return str.replace(/[^\-.!,\w\s]/gi, '');
 }
 
 // Create all our routes and set up logic within those routes where required.
