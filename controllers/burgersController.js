@@ -1,8 +1,7 @@
 const express = require("express");
-
 const router = express.Router();
+const path = require("path");
 
-// Import the model (cat.js) to use its database functions.
 const burger = require("../models/burger.js");
 
 function removeSpecials(str){
@@ -93,6 +92,10 @@ router.delete("/api/burgers/:id", (req, res) => {
   burger.delete("id", req.params.id, (data) => {
     res.json(data);
   });
+});
+
+router.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "../public/error.html"));
 });
 
 // Export routes for server.js to use.
